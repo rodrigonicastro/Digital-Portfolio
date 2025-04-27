@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Portfolio</title>
+  <title>Rodrigo Nicastro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">My Portfolio</a>
+      <a class="navbar-brand" href="index.html">Rodrigo Nicastro</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -32,21 +32,38 @@
     <div id="projects" class="mt-5">
       <h1 class="text-center">Projects & Academic Work</h1>
       <div class="row">
-        <div class="col-md-4">
-          <img src="resources/img/project1.jpg" class="img-fluid mb-2" alt="Project 1">
-          <p>[description of Project 1]</p>
+        <div class="col-md-4 mb-4">
+          <h5><a href="https://github.com/rodrigonicastro/ECEN2370-FinalProject" target="_blank" class="text-decoration-none">Connect 4</a></h5>
+          <p>This is the final project for my Embedded Software Engineering class. Using a STM32 board and the peripherals in it, I developed a game of Connect 4 using the touch screen and buttons. The application is fully coded in C, with help of the HAL (Hardware Abstraction Layer) to configure and initialize all of the needed peripherals.</p>
         </div>
-        <div class="col-md-4">
-          <img src="resources/img/project2.jpg" class="img-fluid mb-2" alt="Project 2">
-          <p>[description of Project 2]</p>
-        </div>
-        <div class="col-md-4">
-          <img src="resources/img/project3.jpg" class="img-fluid mb-2" alt="Project 3">
-          <p>[description of Project 3]</p>
+        <div class="col-md-4 mb-4">
+          <h5><a href="https://csci-3308-group-7-project-fridge-fusion.onrender.com/" target="_blank" class="text-decoration-none">Fridge Fusion</a></h5>
+          <p>In a group of 4 students, we developed a website that takes in the ingredients you have in your fridge and makes recipe suggestions based on that. You can also add friends and combine ingredients with them to get customized recipes based on both of your ingredients. There is a full description of our project and technology stack in this <a href="https://github.com/frankienr/csci-3308-group-7-project-fridge-fusion" target="_blank">GitHub repository</a>.</p>
+        </div>        
+        <div class="col-md-4 mb-4">
+          <h5><a href="https://github.com/rodrigonicastro/Digital-Portfolio/tree/main/final-project-rodrigonicastro" target="_blank" class="text-decoration-none">IMDB Simulator</a></h5>
+          <p>Used several data structures to develop a simulation of IMDB's functionalities, with a database of around 1000 movies. All of the code was written in C++, including Hash Tables, Graphs, and Skip Lists, to allow searches for directors, actors, movie titles, etc.</p>
         </div>
       </div>
     </div>
   </div>
+  
+  <div class="container text-center">
+    <p>If you are interested in taking a deeper look into some of my academic coursework, there is a lot of content in my <a href="https://github.com/rodrigonicastro" target="_blank">GitHub page</a>. I feel like a lot of these assignments/projects aren't necessarily relevant enough to go through them in detail here, but they can definetely showcase well some of my work (especially with C++ and MySQL) that I don't have space to go into detail here.</p>
+  </div>
+  <!-- Footer -->
+<footer class="bg-dark text-white mt-auto py-3 text-center">
+  <div class="container">
+    <small>
+      <a href="https://github.com/rodrigonicastro" class="text-white me-2" target="_blank">GitHub</a> |
+      <a href="https://www.linkedin.com/in/rodrigonicastro/" class="text-white mx-2" target="_blank">LinkedIn</a> |
+      <a href="https://boulder.joinhandshake.com/profiles/hcmfb8" class="text-white ms-2" target="_blank">Handshake</a>
+    </small>
+    <div class="mt-2">
+      <small>&copy; 2025 Rodrigo Nicastro</small>
+    </div>
+  </div>
+</footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
