@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rodrigo Nicastro</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .project-card {
+      border-left: 4px solid #343a40;
+      transition: box-shadow 0.2s ease;
+    }
+    .project-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+    .project-card .card-title a {
+      color: #212529;
+      text-decoration: none;
+    }
+    .project-card .card-title a:hover {
+      text-decoration: underline;
+    }
+    .tool-badge {
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .project-date {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+    #no-results {
+      display: none;
+    }
+  </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
   <!-- Navbar -->
@@ -18,7 +45,6 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">About Me</a></li>
           <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-<!--          <li class="nav-item"><a class="nav-link" href="hobbies.html">Interests</a></li>-->
           <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="social.html">Social Media</a></li>
         </ul>
@@ -27,43 +53,222 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
-    <!-- projects.html -->
-    <div id="projects" class="mt-5">
-      <h1 class="text-center">Projects & Academic Work</h1>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <h5><a href="https://github.com/rodrigonicastro/ECEN2370-FinalProject" target="_blank" class="text-decoration-none">Connect 4</a></h5>
-          <p>This is the final project for my Embedded Software Engineering class. Using a STM32 board and the peripherals in it, I developed a game of Connect 4 using the touch screen and buttons. The application is fully coded in C, with help of the HAL (Hardware Abstraction Layer) to configure and initialize all of the needed peripherals.</p>
-        </div>
-        <div class="col-md-4 mb-4">
-          <h5><a href="https://csci-3308-group-7-project-fridge-fusion.onrender.com/" target="_blank" class="text-decoration-none">Fridge Fusion</a></h5>
-          <p>In a group of 4 students, we developed a website that takes in the ingredients you have in your fridge and makes recipe suggestions based on that. You can also add friends and combine ingredients with them to get customized recipes based on both of your ingredients. There is a full description of our project and technology stack in this <a href="https://github.com/frankienr/csci-3308-group-7-project-fridge-fusion" target="_blank">GitHub repository</a>.</p>
-        </div>        
-        <div class="col-md-4 mb-4">
-          <h5><a href="https://github.com/rodrigonicastro/Digital-Portfolio/tree/main/final-project-rodrigonicastro" target="_blank" class="text-decoration-none">IMDB Simulator</a></h5>
-          <p>Used several data structures to develop a simulation of IMDB's functionalities, with a database of around 1000 movies. All of the code was written in C++, including Hash Tables, Graphs, and Skip Lists, to allow searches for directors, actors, movie titles, etc.</p>
-        </div>
+  <div class="container mb-5">
+    <h1 class="text-center mb-4">Projects & Academic Work</h1>
+
+    <!-- Filter / Sort Controls -->
+    <div class="row g-3 align-items-end mb-4">
+      <div class="col-sm-5 col-md-4">
+        <label for="sortDate" class="form-label fw-semibold">Sort by Date</label>
+        <select id="sortDate" class="form-select">
+          <option value="">-- No sort --</option>
+          <option value="desc">Newest First</option>
+          <option value="asc">Oldest First</option>
+        </select>
+      </div>
+      <div class="col-sm-5 col-md-4">
+        <label for="filterTool" class="form-label fw-semibold">Filter by Tool / Language</label>
+        <select id="filterTool" class="form-select">
+          <option value="">All Tools & Languages</option>
+        </select>
+      </div>
+      <div class="col-sm-2 col-md-2">
+        <button id="resetFilters" class="btn btn-outline-secondary w-100">Reset</button>
       </div>
     </div>
+
+    <!-- Project List -->
+    <div id="project-list">
+      <!-- PROJECT: CS2 POV Finder-->
+      <div class="project-card card mb-4"
+           data-date="2026-06"
+           data-tools="Python, TypeScript, PostgreSQL, Alembic, Azure">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <h4 class="card-title mb-1">
+              <a href="https://cs2povfinder.com/" target="_blank">CS2 POV Finder</a>
+            </h4>
+            <span class="project-date">Summer 2026</span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-dark tool-badge me-1">Python</span>
+            <span class="badge bg-dark tool-badge me-1">TypeScript</span>
+            <span class="badge bg-dark tool-badge me-1">PostgreSQL</span>
+            <span class="badge bg-dark tool-badge me-1">Alembic</span>
+            <span class="badge bg-dark tool-badge me-1">Azure</span>
+          </div>
+          <p class="card-text">Website to help CS2 enthusiasts find POV videos of specific players or roles. These videos are scattered across multiple YouTube channels, and there was no easy way to search for them, you had to manually look at each channel one by one. This website fixes this by weekly running a scraper on a leaderboard with players’ roles information, and matching players with videos pulled hourly with the YouTube API. Users subscribe to maps, roles, and players, and select what they want to watch and if they want to get notified or not.
+        </div>
+      </div>
+
+      <!-- PROJECT: Connect 4 - OOAD-->
+      <div class="project-card card mb-4"
+           data-date="2026-01"
+           data-tools="Java, SwingUI">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <h4 class="card-title mb-1">
+              <a >Connect 4 - OOAD</a>
+            </h4>
+            <span class="project-date">Spring 2026</span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-dark tool-badge me-1">Java</span>
+            <span class="badge bg-dark tool-badge me-1">SwingUI</span>
+            <span class="badge bg-dark tool-badge me-1">OOP</span>
+          </div>
+          <p class="card-text">Developed a Connect4 game using Java, and displayed using the SwingUI interface. This is basically the 2.0 version of the Connect4 game I developed for the Embedded Systems class. Many OOP design patterns and concepts were implemented in the coding of the game, specially to improve the Player, Board, and Connect4 classes. The game has a single-player mode (that can be played against random moves or AI), and a two-player mode.</p>
+        </div>
+      </div>
+
+      <!-- PROJECT: Connect 4 - ES -->
+      <div class="project-card card mb-4"
+           data-date="2025-01"
+           data-tools="C,STM32,HAL,Embedded Systems">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <h4 class="card-title mb-1">
+              <a href="https://github.com/rodrigonicastro/ECEN2370-FinalProject" target="_blank">Connect 4 - Embedded Software Engineering</a>
+            </h4>
+            <span class="project-date">Spring 2025</span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-dark tool-badge me-1">C</span>
+            <span class="badge bg-dark tool-badge me-1">STM32</span>
+            <span class="badge bg-dark tool-badge me-1">HAL</span>
+            <span class="badge bg-dark tool-badge me-1">Embedded Systems</span>
+          </div>
+          <p class="card-text">This is the final project for my Embedded Software Engineering class. Using a STM32 board and the peripherals in it, I developed a game of Connect 4 using the touch screen and buttons. The application is fully coded in C, with help of the HAL (Hardware Abstraction Layer) to configure and initialize all of the needed peripherals.</p>
+        </div>
+      </div>
+
+      <!-- PROJECT: Fridge Fusion -->
+      <div class="project-card card mb-4"
+           data-date="2025-01"
+           data-tools="JavaScript,Node.js,PostgreSQL,HTML,CSS,Bootstrap">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <h4 class="card-title mb-1">
+              <a href="https://csci-3308-group-7-project-fridge-fusion.onrender.com/" target="_blank">Fridge Fusion</a>
+            </h4>
+            <span class="project-date">Spring 2025</span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-dark tool-badge me-1">JavaScript</span>
+            <span class="badge bg-dark tool-badge me-1">Node.js</span>
+            <span class="badge bg-dark tool-badge me-1">PostgreSQL</span>
+            <span class="badge bg-dark tool-badge me-1">HTML</span>
+            <span class="badge bg-dark tool-badge me-1">CSS</span>
+            <span class="badge bg-dark tool-badge me-1">Bootstrap</span>
+          </div>
+          <p class="card-text">In a group of 4 students, we developed a website that takes in the ingredients you have in your fridge and makes recipe suggestions based on that. You can also add friends and combine ingredients with them to get customized recipes based on both of your ingredients. There is a full description of our project and technology stack in this <a href="https://github.com/frankienr/csci-3308-group-7-project-fridge-fusion" target="_blank">GitHub repository</a>.</p>
+        </div>
+      </div>
+
+      <!-- PROJECT: IMDB Simulator -->
+      <div class="project-card card mb-4"
+           data-date="2023-01"
+           data-tools="C++,Hash Tables,Graphs,Skip Lists,Data Structures">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">
+            <h4 class="card-title mb-1">
+              <a href="https://github.com/rodrigonicastro/Digital-Portfolio/tree/main/final-project-rodrigonicastro" target="_blank">IMDB Simulator</a>
+            </h4>
+            <span class="project-date">Spring 2023</span>
+          </div>
+          <div class="mb-3">
+            <span class="badge bg-dark tool-badge me-1">C++</span>
+            <span class="badge bg-dark tool-badge me-1">Hash Tables</span>
+            <span class="badge bg-dark tool-badge me-1">Graphs</span>
+            <span class="badge bg-dark tool-badge me-1">Skip Lists</span>
+            <span class="badge bg-dark tool-badge me-1">Data Structures</span>
+          </div>
+          <p class="card-text">Used several data structures to develop a simulation of IMDB's functionalities, with a database of around 1000 movies. All of the code was written in C++, including Hash Tables, Graphs, and Skip Lists, to allow searches for directors, actors, movie titles, etc.</p>
+        </div>
+      </div>
+
+    </div><!-- /#project-list -->
+
+    <p id="no-results" class="text-center text-muted mt-4">No projects match the selected filter.</p>
+
+<!--    <div class="container text-center mt-4">-->
+<!--      <p>If you are interested in taking a deeper look into some of my academic coursework, there is a lot of content in my <a href="https://github.com/rodrigonicastro" target="_blank">GitHub page</a>. I feel like a lot of these assignments/projects aren't necessarily relevant enough to go through them in detail here, but they can definetely showcase well some of my work (especially with C++ and MySQL) that I don't have space to go into detail here.</p>-->
+<!--    </div>-->
   </div>
-  
-  <div class="container text-center">
-    <p>If you are interested in taking a deeper look into some of my academic coursework, there is a lot of content in my <a href="https://github.com/rodrigonicastro" target="_blank">GitHub page</a>. I feel like a lot of these assignments/projects aren't necessarily relevant enough to go through them in detail here, but they can definetely showcase well some of my work (especially with C++ and MySQL) that I don't have space to go into detail here.</p>
-  </div>
+
   <!-- Footer -->
-<footer class="bg-dark text-white mt-auto py-3 text-center">
-  <div class="container">
-    <small>
-      <a href="https://github.com/rodrigonicastro" class="text-white me-2" target="_blank">GitHub</a> |
-      <a href="https://www.linkedin.com/in/rodrigonicastro/" class="text-white mx-2" target="_blank">LinkedIn</a> |
-      <a href="https://boulder.joinhandshake.com/profiles/hcmfb8" class="text-white ms-2" target="_blank">Handshake</a>
-    </small>
-    <div class="mt-2">
-      <small>&copy; 2025 Rodrigo Nicastro</small>
+  <footer class="bg-dark text-white mt-auto py-3 text-center">
+    <div class="container">
+      <small>
+        <a href="https://github.com/rodrigonicastro" class="text-white me-2" target="_blank">GitHub</a> |
+        <a href="https://www.linkedin.com/in/rodrigonicastro/" class="text-white mx-2" target="_blank">LinkedIn</a> |
+        <a href="https://boulder.joinhandshake.com/profiles/hcmfb8" class="text-white ms-2" target="_blank">Handshake</a>
+      </small>
+      <div class="mt-2">
+        <small>&copy; 2025 Rodrigo Nicastro</small>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (function () {
+      const list = document.getElementById('project-list');
+      const sortSelect = document.getElementById('sortDate');
+      const filterSelect = document.getElementById('filterTool');
+      const resetBtn = document.getElementById('resetFilters');
+      const noResults = document.getElementById('no-results');
+
+      // Collect all unique tools from data-tools attributes and populate filter dropdown
+      const allCards = () => Array.from(list.querySelectorAll('.project-card'));
+      const toolSet = new Set();
+      allCards().forEach(card => {
+        card.dataset.tools.split(',').map(t => t.trim()).forEach(t => toolSet.add(t));
+      });
+      Array.from(toolSet).sort().forEach(tool => {
+        const opt = document.createElement('option');
+        opt.value = tool;
+        opt.textContent = tool;
+        filterSelect.appendChild(opt);
+      });
+
+      function applyFilters() {
+        const sortVal = sortSelect.value;
+        const filterVal = filterSelect.value;
+
+        let cards = allCards();
+
+        // Filter
+        cards.forEach(card => {
+          const tools = card.dataset.tools.split(',').map(t => t.trim());
+          const visible = !filterVal || tools.includes(filterVal);
+          card.style.display = visible ? '' : 'none';
+        });
+
+        // Sort (re-append in sorted order)
+        if (sortVal) {
+          const visible = cards.filter(c => c.style.display !== 'none');
+          visible.sort((a, b) => {
+            const da = a.dataset.date || '0000-00';
+            const db = b.dataset.date || '0000-00';
+            return sortVal === 'asc' ? da.localeCompare(db) : db.localeCompare(da);
+          });
+          visible.forEach(card => list.appendChild(card));
+        }
+
+        // No-results message
+        const anyVisible = cards.some(c => c.style.display !== 'none');
+        noResults.style.display = anyVisible ? 'none' : 'block';
+      }
+
+      sortSelect.addEventListener('change', applyFilters);
+      filterSelect.addEventListener('change', applyFilters);
+      resetBtn.addEventListener('click', () => {
+        sortSelect.value = '';
+        filterSelect.value = '';
+        applyFilters();
+      });
+    })();
+  </script>
 </body>
 </html>
